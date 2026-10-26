@@ -9,12 +9,13 @@
  */
 
 import { Check, CircleCheck, CircleSlash, RotateCcw } from "lucide-react";
-import { timeToMinutes, toTimeKey } from "@/lib/data/time";
-import type { DoseLog, Medicine, ScheduleItem } from "@/lib/data/types";
+import { scheduledAt, timeToMinutes, toTimeKey } from "@/lib/data/time";
+import type { Caregiver, DoseLog, Medicine, ScheduleItem } from "@/lib/data/types";
 import { useTranslator } from "@/lib/i18n/useTranslator";
 import { BigTimeBadge, type BigTimeBadgeTone } from "./BigTimeBadge";
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { CaregiverNudge, NUDGE_AFTER_MS } from "./CaregiverNudge";
 
 export interface DoseEntry {
   schedule: ScheduleItem;
@@ -27,6 +28,8 @@ export interface DoseEntry {
 export function DoseCard({
   dose,
   instruction,
+  dateKey,
+  caregiver,
   now,
   onTake,
   onSkip,
@@ -35,6 +38,10 @@ export function DoseCard({
   dose: DoseEntry;
   /** Optional plain-language sentence, already built for this dose. */
   instruction?: string;
+  /** The local date this dose belongs to, used for the caregiver nudge. */
+  dateKey?: string;
+  /** The caregiver saved in Settings, if any. */
+  caregiver?: Caregiver | null;
   /** Current time, used to mark a dose that is past its time. */
   now: Date;
   onTake: () => void;
@@ -48,6 +55,9 @@ export function DoseCard({
   const isSkipped = log?.status === "skipped";
   const minutesNow = now.getHours() * 60 + now.getMinutes();
   const isLate = !log && timeToMinutes(schedule.time) < minutesNow;
+  const dueAt = dateKey ? scheduledAt(dateKey, schedule.time) : null;
+  const needsCaregiverNudge =
+    !log && dueAt !== null && now.getTime() - dueAt.getTime() >= NUDGE_AFTER_MS;
 
   const tone: BigTimeBadgeTone = isTaken ? "done" : isLate ? "late" : "default";
   const takenAt = log ? clock(toTimeKey(new Date(log.recordedAt))) : null;
@@ -73,6 +83,14 @@ export function DoseCard({
           ) : null}
         </div>
       </div>
+
+      {needsCaregiverNudge ? (
+        <CaregiverNudge
+          caregiver={caregiver ?? null}
+          medicineName={medicine.name}
+          time={schedule.time}
+        />
+      ) : null}
 
       {isTaken && takenAt ? (
         <div className="flex items-center gap-3 rounded-xl border-2 border-ok-line bg-ok-soft p-3">

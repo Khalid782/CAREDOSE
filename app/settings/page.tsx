@@ -7,9 +7,10 @@
  * an explicit Save button.
  */
 
-import { Database, Languages, Moon, RotateCcw, Sun, UserRound, Utensils } from "lucide-react";
+import { BookOpen, Database, Moon, RotateCcw, Sun, UserRound, Utensils } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/Button";
+import { AlarmSettingsCard } from "@/components/AlarmSettingsCard";
+import { Button, LinkButton } from "@/components/Button";
 import { Card, CardTitle } from "@/components/Card";
 import { Field, FieldGroup, inputClass } from "@/components/Field";
 import { PageHeader } from "@/components/PageHeader";
@@ -121,6 +122,8 @@ export default function SettingsPage() {
         caregiver={primaryCaregiver}
       />
 
+      <AlarmSettingsCard />
+
       <Card className="flex flex-col gap-4">
         <CardTitle icon={<Database size={26} strokeWidth={2.5} />}>
           {t("settings.dataTitle")}
@@ -176,13 +179,22 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="flex flex-col gap-3">
-        <CardTitle icon={<Languages size={26} strokeWidth={2.5} />}>
+        <CardTitle icon={<BookOpen size={26} strokeWidth={2.5} />}>
           {t("settings.about")}
         </CardTitle>
         <p className="text-base font-semibold text-fg">
           {t("settings.version", { version: APP_VERSION })}
         </p>
         <p className="text-[0.9rem] text-fg-muted">{t("settings.aboutBody")}</p>
+        <LinkButton
+          href="/about"
+          variant="secondary"
+          size="md"
+          fullWidth
+          icon={<BookOpen size={24} strokeWidth={2.5} />}
+        >
+          {t("settings.aboutLink")}
+        </LinkButton>
       </Card>
     </>
   );

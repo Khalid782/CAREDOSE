@@ -6,13 +6,16 @@
  */
 
 import type { ReactNode } from "react";
+import { AlarmProvider } from "./AlarmProvider";
 import { CareDataProvider } from "./CareDataProvider";
 import { SettingsProvider } from "./SettingsProvider";
 
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
     <SettingsProvider>
-      <CareDataProvider>{children}</CareDataProvider>
+      <CareDataProvider>
+        <AlarmProvider>{children}</AlarmProvider>
+      </CareDataProvider>
     </SettingsProvider>
   );
 }

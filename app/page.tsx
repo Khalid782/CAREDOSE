@@ -35,7 +35,7 @@ const MEAL_FOR_SLOT: Record<TimeOfDay, keyof MealTimes> = {
 export default function TodayPage() {
   const { t, longDate, at, timeOfDay, meal, countdown } = useTranslator();
   const { settings } = useSettings();
-  const { setDoseStatus, clearDose } = useCareData();
+  const { setDoseStatus, clearDose, primaryCaregiver } = useCareData();
   const now = useNow(1000);
 
   const dateKey = toDateKey(now);
@@ -161,6 +161,8 @@ export default function TodayPage() {
                 key={dose.schedule.id}
                 dose={dose}
                 instruction={dose.instruction}
+                dateKey={dateKey}
+                caregiver={primaryCaregiver}
                 now={now}
                 onTake={() => void setDoseStatus(dose.schedule.id, dateKey, "taken")}
                 onSkip={() => void setDoseStatus(dose.schedule.id, dateKey, "skipped")}

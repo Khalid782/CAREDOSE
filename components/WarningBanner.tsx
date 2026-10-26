@@ -14,18 +14,22 @@ export function WarningBanner({
   title,
   children,
   tone = "warning",
+  urgent = false,
 }: {
   title?: string;
   children?: ReactNode;
   tone?: BannerTone;
+  /** High-priority alerts use an assertive live region and a stronger border. */
+  urgent?: boolean;
 }) {
   const isWarning = tone === "warning";
   const Icon = isWarning ? TriangleAlert : Info;
 
   return (
     <div
-      role="note"
-      className={`flex gap-3 rounded-2xl border-2 p-4 ${
+      role={urgent ? "alert" : "note"}
+      aria-live={urgent ? "assertive" : undefined}
+      className={`flex gap-3 rounded-2xl ${urgent ? "border-[3px]" : "border-2"} p-4 ${
         isWarning ? "border-warn-line bg-warn-soft" : "border-accent bg-accent-soft"
       }`}
     >

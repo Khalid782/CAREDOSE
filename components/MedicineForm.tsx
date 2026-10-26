@@ -6,8 +6,10 @@
  */
 
 import { Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useCareData } from "@/lib/context/CareDataProvider";
 import { timeOfDayFromTime, timeToMinutes, minutesToTime } from "@/lib/data/time";
+import { interactionChecker } from "@/lib/interactions";
 import {
   FOOD_RELATIONS,
   MEDICINE_FORMS,
@@ -19,6 +21,7 @@ import { useTranslator } from "@/lib/i18n/useTranslator";
 import { Button } from "./Button";
 import { Card } from "./Card";
 import { Field, FieldGroup, inputClass, selectClass } from "./Field";
+import { InteractionWarning } from "./InteractionWarning";
 import { SegmentedControl } from "./SegmentedControl";
 import { WarningBanner } from "./WarningBanner";
 
@@ -43,6 +46,7 @@ export function MedicineForm({
   onSubmit,
   onCancel,
   busy = false,
+  medicineId,
 }: {
   initial?: MedicineDraft;
   title: string;
@@ -50,10 +54,22 @@ export function MedicineForm({
   onSubmit: (draft: MedicineDraft) => void;
   onCancel: () => void;
   busy?: boolean;
+  /** Set when editing, so the medicine is not compared with itself. */
+  medicineId?: string;
 }) {
   const { t, timeOfDay } = useTranslator();
+  const { medicines } = useCareData();
   const [draft, setDraft] = useState<MedicineDraft>(initial ?? EMPTY_MEDICINE_DRAFT);
   const [error, setError] = useState<string | null>(null);
+
+  const interactionWarnings = useMemo(() => {
+    const name = draft.name.trim();
+    if (!name) return [];
+    return interactionChecker.checkNew(
+      medicines.filter((medicine) => medicine.id !== medicineId),
+      [{ id: "medicine-draft", name }],
+    );
+  }, [draft.name, medicines, medicineId]);
 
   const update = <TKey extends keyof MedicineDraft>(key: TKey, value: MedicineDraft[TKey]) => {
     setDraft((previous) => ({ ...previous, [key]: value }));
@@ -107,6 +123,13 @@ export function MedicineForm({
       <h1 className="text-[1.6rem] font-bold text-fg">{title}</h1>
 
       {error ? <WarningBanner title={error} /> : null}
+
+      <InteractionWarning warnings={interactionWarnings} />
+      {interactionWarnings.length === 0 ? (
+        <p className="text-[0.85rem] leading-relaxed text-fg-muted">
+          {t("interactions.shortDisclaimer")}
+        </p>
+      ) : null}
 
       <Card className="flex flex-col gap-5">
         <Field label={t("medicines.fieldName")} htmlFor="medicine-name">

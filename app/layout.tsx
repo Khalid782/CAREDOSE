@@ -2,12 +2,22 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { AppProviders } from "@/lib/context/AppProviders";
 import { AppShell } from "@/components/AppShell";
+import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "CareDose",
   description: "CareDose helps you take the right medicine at the right time, every day.",
   applicationName: "CareDose",
+  manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/icons/icon-192.png",
+  },
   appleWebApp: { capable: true, title: "CareDose", statusBarStyle: "default" },
 };
 
@@ -36,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body className="min-h-full">
+        <ServiceWorkerRegistrar />
         <AppProviders>
           <AppShell>{children}</AppShell>
         </AppProviders>

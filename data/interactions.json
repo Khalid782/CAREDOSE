@@ -1,0 +1,583 @@
+{
+  "disclaimer": "This is general information, not medical advice. It does not list every interaction. Always ask a doctor or pharmacist before taking medicines together.",
+  "pairs": [
+    {
+      "drugA": "warfarin",
+      "drugB": "aspirin",
+      "severity": "severe",
+      "explanation": "Both thin the blood. Taking them together can cause serious bleeding."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "ibuprofen",
+      "severity": "severe",
+      "explanation": "Ibuprofen can irritate the stomach and increase the bleeding risk of warfarin."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "metronidazole",
+      "severity": "severe",
+      "explanation": "Metronidazole can make warfarin much stronger and cause serious bleeding."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "amiodarone",
+      "severity": "severe",
+      "explanation": "Amiodarone can raise the warfarin level, leading to bleeding."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "rifampicin",
+      "severity": "severe",
+      "explanation": "Rifampicin can make warfarin stop working, so blood clots may form."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "paracetamol",
+      "severity": "moderate",
+      "explanation": "Regular paracetamol can raise the warfarin effect. The dose may need checking."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "azithromycin",
+      "severity": "moderate",
+      "explanation": "Azithromycin can change the warfarin effect and increase bleeding risk."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "ciprofloxacin",
+      "severity": "moderate",
+      "explanation": "Ciprofloxacin can strengthen warfarin and increase bleeding risk."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "erythromycin",
+      "severity": "moderate",
+      "explanation": "Erythromycin can raise the warfarin effect and increase bleeding risk."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "cimetidine",
+      "severity": "moderate",
+      "explanation": "Cimetidine can raise the warfarin effect and increase bleeding risk."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "carbamazepine",
+      "severity": "moderate",
+      "explanation": "Carbamazepine can make warfarin weaker and raise the risk of a blood clot."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "phenytoin",
+      "severity": "severe",
+      "explanation": "These medicines affect each other strongly. The levels and bleeding risk need close checking."
+    },
+    {
+      "drugA": "warfarin",
+      "drugB": "mefenamic acid",
+      "severity": "moderate",
+      "explanation": "Mefenamic acid can irritate the stomach and increase warfarin bleeding risk."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "clopidogrel",
+      "severity": "severe",
+      "explanation": "Two antiplatelet medicines together greatly increase the risk of serious bleeding."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Ibuprofen can increase stomach bleeding and may reduce aspirin's heart-protecting effect."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "diclofenac",
+      "severity": "severe",
+      "explanation": "Both can cause stomach bleeding, and the risk is much higher together."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "naproxen",
+      "severity": "severe",
+      "explanation": "Both can cause stomach bleeding, and the risk is much higher together."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "sertraline",
+      "severity": "moderate",
+      "explanation": "Sertraline can increase the bleeding risk of aspirin, especially in the stomach."
+    },
+    {
+      "drugA": "aspirin",
+      "drugB": "prednisolone",
+      "severity": "severe",
+      "explanation": "Steroids and aspirin together can cause serious stomach ulcers and bleeding."
+    },
+    {
+      "drugA": "clopidogrel",
+      "drugB": "omeprazole",
+      "severity": "moderate",
+      "explanation": "Omeprazole may reduce how well clopidogrel works. Another stomach medicine may be preferred."
+    },
+    {
+      "drugA": "clopidogrel",
+      "drugB": "esomeprazole",
+      "severity": "moderate",
+      "explanation": "Esomeprazole may reduce how well clopidogrel works. Another stomach medicine may be preferred."
+    },
+    {
+      "drugA": "atorvastatin",
+      "drugB": "clarithromycin",
+      "severity": "severe",
+      "explanation": "Clarithromycin can raise atorvastatin levels and cause serious muscle damage."
+    },
+    {
+      "drugA": "atorvastatin",
+      "drugB": "azithromycin",
+      "severity": "moderate",
+      "explanation": "Azithromycin can raise atorvastatin levels and increase the risk of muscle problems."
+    },
+    {
+      "drugA": "atorvastatin",
+      "drugB": "gemfibrozil",
+      "severity": "severe",
+      "explanation": "This combination can cause severe muscle breakdown and kidney damage."
+    },
+    {
+      "drugA": "simvastatin",
+      "drugB": "clarithromycin",
+      "severity": "severe",
+      "explanation": "Clarithromycin can raise simvastatin levels and cause serious muscle damage."
+    },
+    {
+      "drugA": "simvastatin",
+      "drugB": "gemfibrozil",
+      "severity": "severe",
+      "explanation": "This combination can cause severe muscle breakdown and kidney damage."
+    },
+    {
+      "drugA": "simvastatin",
+      "drugB": "amlodipine",
+      "severity": "moderate",
+      "explanation": "Amlodipine can raise simvastatin levels. A lower simvastatin dose may be needed."
+    },
+    {
+      "drugA": "simvastatin",
+      "drugB": "amiodarone",
+      "severity": "severe",
+      "explanation": "Amiodarone can raise simvastatin levels and cause serious muscle damage."
+    },
+    {
+      "drugA": "ramipril",
+      "drugB": "spironolactone",
+      "severity": "severe",
+      "explanation": "Both can raise potassium to a dangerous level and affect the heart."
+    },
+    {
+      "drugA": "losartan",
+      "drugB": "spironolactone",
+      "severity": "severe",
+      "explanation": "Both can raise potassium to a dangerous level and affect the heart."
+    },
+    {
+      "drugA": "enalapril",
+      "drugB": "spironolactone",
+      "severity": "severe",
+      "explanation": "Both can raise potassium to a dangerous level and affect the heart."
+    },
+    {
+      "drugA": "ramipril",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Ibuprofen can reduce kidney function and make blood pressure medicines less effective."
+    },
+    {
+      "drugA": "losartan",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Ibuprofen can reduce kidney function and make blood pressure medicines less effective."
+    },
+    {
+      "drugA": "enalapril",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Ibuprofen can reduce kidney function and make blood pressure medicines less effective."
+    },
+    {
+      "drugA": "furosemide",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Ibuprofen can reduce the effect of furosemide and put extra strain on the kidneys."
+    },
+    {
+      "drugA": "furosemide",
+      "drugB": "digoxin",
+      "severity": "moderate",
+      "explanation": "Furosemide can lower potassium, which makes digoxin side effects more likely."
+    },
+    {
+      "drugA": "digoxin",
+      "drugB": "amiodarone",
+      "severity": "severe",
+      "explanation": "Amiodarone can raise digoxin levels and cause a dangerous heart rhythm."
+    },
+    {
+      "drugA": "digoxin",
+      "drugB": "verapamil",
+      "severity": "severe",
+      "explanation": "Verapamil can raise digoxin levels and slow the heart too much."
+    },
+    {
+      "drugA": "metoprolol",
+      "drugB": "verapamil",
+      "severity": "severe",
+      "explanation": "Both slow the heart. Together they can cause a dangerously slow heartbeat."
+    },
+    {
+      "drugA": "atenolol",
+      "drugB": "verapamil",
+      "severity": "severe",
+      "explanation": "Both slow the heart. Together they can cause a dangerously slow heartbeat."
+    },
+    {
+      "drugA": "propranolol",
+      "drugB": "salbutamol",
+      "severity": "moderate",
+      "explanation": "Propranolol can block salbutamol and make breathing problems worse."
+    },
+    {
+      "drugA": "metoprolol",
+      "drugB": "salbutamol",
+      "severity": "moderate",
+      "explanation": "Metoprolol can reduce the effect of salbutamol and may worsen wheezing."
+    },
+    {
+      "drugA": "insulin",
+      "drugB": "glimepiride",
+      "severity": "severe",
+      "explanation": "Both lower blood sugar. Together they can cause a dangerous low sugar level."
+    },
+    {
+      "drugA": "glimepiride",
+      "drugB": "sulfamethoxazole",
+      "severity": "severe",
+      "explanation": "Sulfamethoxazole can make glimepiride stronger and cause very low blood sugar."
+    },
+    {
+      "drugA": "pioglitazone",
+      "drugB": "insulin",
+      "severity": "moderate",
+      "explanation": "This combination can cause fluid buildup and increase the risk of heart failure."
+    },
+    {
+      "drugA": "metformin",
+      "drugB": "cimetidine",
+      "severity": "moderate",
+      "explanation": "Cimetidine can raise metformin levels. Kidney function and sugar levels may need checking."
+    },
+    {
+      "drugA": "metformin",
+      "drugB": "dolutegravir",
+      "severity": "moderate",
+      "explanation": "Dolutegravir can raise metformin levels. The metformin dose may need adjusting."
+    },
+    {
+      "drugA": "levothyroxine",
+      "drugB": "calcium carbonate",
+      "severity": "moderate",
+      "explanation": "Calcium can stop levothyroxine being absorbed properly. They should be taken hours apart."
+    },
+    {
+      "drugA": "levothyroxine",
+      "drugB": "ferrous sulfate",
+      "severity": "moderate",
+      "explanation": "Iron can stop levothyroxine being absorbed properly. They should be taken hours apart."
+    },
+    {
+      "drugA": "levothyroxine",
+      "drugB": "omeprazole",
+      "severity": "moderate",
+      "explanation": "Omeprazole can reduce levothyroxine absorption. The thyroid level may need checking."
+    },
+    {
+      "drugA": "ciprofloxacin",
+      "drugB": "calcium carbonate",
+      "severity": "moderate",
+      "explanation": "Calcium can stop ciprofloxacin being absorbed. They should be taken hours apart."
+    },
+    {
+      "drugA": "ciprofloxacin",
+      "drugB": "ferrous sulfate",
+      "severity": "moderate",
+      "explanation": "Iron can stop ciprofloxacin being absorbed. They should be taken hours apart."
+    },
+    {
+      "drugA": "doxycycline",
+      "drugB": "ferrous sulfate",
+      "severity": "moderate",
+      "explanation": "Iron can reduce doxycycline absorption. They should be taken hours apart."
+    },
+    {
+      "drugA": "tetracycline",
+      "drugB": "calcium carbonate",
+      "severity": "moderate",
+      "explanation": "Calcium can reduce tetracycline absorption. They should be taken hours apart."
+    },
+    {
+      "drugA": "methotrexate",
+      "drugB": "ibuprofen",
+      "severity": "severe",
+      "explanation": "Ibuprofen can make methotrexate build up and cause serious side effects."
+    },
+    {
+      "drugA": "methotrexate",
+      "drugB": "aspirin",
+      "severity": "severe",
+      "explanation": "Aspirin can make methotrexate build up and cause serious side effects."
+    },
+    {
+      "drugA": "allopurinol",
+      "drugB": "azathioprine",
+      "severity": "severe",
+      "explanation": "Allopurinol can cause azathioprine to reach dangerous levels and suppress blood cells."
+    },
+    {
+      "drugA": "allopurinol",
+      "drugB": "amoxicillin",
+      "severity": "minor",
+      "explanation": "This combination can cause a skin rash more often than either medicine alone."
+    },
+    {
+      "drugA": "tramadol",
+      "drugB": "sertraline",
+      "severity": "severe",
+      "explanation": "Both affect serotonin. Together they can cause serotonin syndrome or a seizure."
+    },
+    {
+      "drugA": "tramadol",
+      "drugB": "amitriptyline",
+      "severity": "severe",
+      "explanation": "Both affect serotonin. Together they can cause serotonin syndrome or a seizure."
+    },
+    {
+      "drugA": "tramadol",
+      "drugB": "fluoxetine",
+      "severity": "severe",
+      "explanation": "Both affect serotonin. Together they can cause serotonin syndrome or a seizure."
+    },
+    {
+      "drugA": "azithromycin",
+      "drugB": "ondansetron",
+      "severity": "severe",
+      "explanation": "Both can disturb the heart rhythm. Together they can cause a dangerous rhythm."
+    },
+    {
+      "drugA": "ondansetron",
+      "drugB": "amitriptyline",
+      "severity": "severe",
+      "explanation": "Both can disturb the heart rhythm. Together they can cause a dangerous rhythm."
+    },
+    {
+      "drugA": "prednisolone",
+      "drugB": "ibuprofen",
+      "severity": "severe",
+      "explanation": "Steroids and ibuprofen together can cause serious stomach ulcers and bleeding."
+    },
+    {
+      "drugA": "ibuprofen",
+      "drugB": "naproxen",
+      "severity": "moderate",
+      "explanation": "Two similar pain medicines together increase stomach bleeding without extra benefit."
+    },
+    {
+      "drugA": "diclofenac",
+      "drugB": "naproxen",
+      "severity": "moderate",
+      "explanation": "Two similar pain medicines together increase stomach bleeding without extra benefit."
+    },
+    {
+      "drugA": "isoniazid",
+      "drugB": "paracetamol",
+      "severity": "moderate",
+      "explanation": "Both can strain the liver. Regular paracetamol with isoniazid needs caution."
+    },
+    {
+      "drugA": "cimetidine",
+      "drugB": "phenytoin",
+      "severity": "moderate",
+      "explanation": "Cimetidine can raise phenytoin levels and increase side effects."
+    },
+    {
+      "drugA": "omeprazole",
+      "drugB": "methotrexate",
+      "severity": "moderate",
+      "explanation": "Omeprazole can slow methotrexate removal and increase its side effects."
+    },
+    {
+      "drugA": "ciprofloxacin",
+      "drugB": "ondansetron",
+      "severity": "moderate",
+      "explanation": "Both can affect the heart rhythm. The heart rhythm may need checking."
+    },
+    {
+      "drugA": "sertraline",
+      "drugB": "ibuprofen",
+      "severity": "moderate",
+      "explanation": "Sertraline can increase the stomach bleeding risk of ibuprofen."
+    },
+    {
+      "drugA": "tramadol",
+      "drugB": "ondansetron",
+      "severity": "minor",
+      "explanation": "Both can affect serotonin and the heart rhythm. Watch for shivering, sweating or a fast heartbeat."
+    }
+  ],
+  "brands": {
+    "dolo": "paracetamol",
+    "dolo 650": "paracetamol",
+    "crocin": "paracetamol",
+    "calpol": "paracetamol",
+    "paracip": "paracetamol",
+    "pacimol": "paracetamol",
+    "metacin": "paracetamol",
+    "ecosprin": "aspirin",
+    "disprin": "aspirin",
+    "loprin": "aspirin",
+    "clopilet": "clopidogrel",
+    "plavix": "clopidogrel",
+    "deplatt": "clopidogrel",
+    "warf": "warfarin",
+    "uniwarfin": "warfarin",
+    "brufen": "ibuprofen",
+    "combiflam": "ibuprofen",
+    "ibugesic": "ibuprofen",
+    "flexon": "ibuprofen",
+    "voveran": "diclofenac",
+    "diclomax": "diclofenac",
+    "dynapar": "diclofenac",
+    "naprosyn": "naproxen",
+    "napra": "naproxen",
+    "meftal": "mefenamic acid",
+    "meftal spas": "mefenamic acid",
+    "zerodol": "aceclofenac",
+    "hifenac": "aceclofenac",
+    "glycomet": "metformin",
+    "glucophage": "metformin",
+    "gluformin": "metformin",
+    "obimet": "metformin",
+    "amlokind": "amlodipine",
+    "amlong": "amlodipine",
+    "stamlo": "amlodipine",
+    "amlopres": "amlodipine",
+    "atorva": "atorvastatin",
+    "storvas": "atorvastatin",
+    "lipitor": "atorvastatin",
+    "atorlip": "atorvastatin",
+    "simvotin": "simvastatin",
+    "simcard": "simvastatin",
+    "zocor": "simvastatin",
+    "lopid": "gemfibrozil",
+    "claribid": "clarithromycin",
+    "klaricid": "clarithromycin",
+    "azee": "azithromycin",
+    "azithral": "azithromycin",
+    "zithromax": "azithromycin",
+    "azax": "azithromycin",
+    "erythrocin": "erythromycin",
+    "erytop": "erythromycin",
+    "ciplox": "ciprofloxacin",
+    "cifran": "ciprofloxacin",
+    "zoxan": "ciprofloxacin",
+    "levoflox": "levofloxacin",
+    "omez": "omeprazole",
+    "ocid": "omeprazole",
+    "nexium": "esomeprazole",
+    "esomep": "esomeprazole",
+    "pantop": "pantoprazole",
+    "pantocid": "pantoprazole",
+    "pan d": "pantoprazole",
+    "rantac": "ranitidine",
+    "zinetac": "ranitidine",
+    "tagamet": "cimetidine",
+    "flagyl": "metronidazole",
+    "metrogyl": "metronidazole",
+    "rifa": "rifampicin",
+    "rimactane": "rifampicin",
+    "cordarone": "amiodarone",
+    "isoptin": "verapamil",
+    "calaptin": "verapamil",
+    "metolar": "metoprolol",
+    "lopressor": "metoprolol",
+    "tenormin": "atenolol",
+    "ciplar": "propranolol",
+    "inderal": "propranolol",
+    "asthalin": "salbutamol",
+    "ventorlin": "salbutamol",
+    "huminsulin": "insulin",
+    "novomix": "insulin",
+    "mixtard": "insulin",
+    "amaryl": "glimepiride",
+    "glimestar": "glimepiride",
+    "glypride": "glimepiride",
+    "pioz": "pioglitazone",
+    "pioglit": "pioglitazone",
+    "septran": "sulfamethoxazole",
+    "bactrim": "sulfamethoxazole",
+    "cotrimoxazole": "sulfamethoxazole",
+    "tivicay": "dolutegravir",
+    "thyronorm": "levothyroxine",
+    "eltroxin": "levothyroxine",
+    "thyrox": "levothyroxine",
+    "shelcal": "calcium carbonate",
+    "calcimax": "calcium carbonate",
+    "calcium": "calcium carbonate",
+    "autrin": "ferrous sulfate",
+    "fefol": "ferrous sulfate",
+    "orofer": "ferrous sulfate",
+    "livogen": "ferrous sulfate",
+    "ferrous": "ferrous sulfate",
+    "folitrax": "methotrexate",
+    "trexall": "methotrexate",
+    "zyloric": "allopurinol",
+    "zyloprim": "allopurinol",
+    "imuran": "azathioprine",
+    "azoran": "azathioprine",
+    "ultracet": "tramadol",
+    "tramazac": "tramadol",
+    "nexito": "sertraline",
+    "daxid": "sertraline",
+    "zoloft": "sertraline",
+    "tryptomer": "amitriptyline",
+    "amitone": "amitriptyline",
+    "fludac": "fluoxetine",
+    "prozac": "fluoxetine",
+    "emeset": "ondansetron",
+    "vomikind": "ondansetron",
+    "wysolone": "prednisolone",
+    "omnacortil": "prednisolone",
+    "inh": "isoniazid",
+    "tegretol": "carbamazepine",
+    "mazetol": "carbamazepine",
+    "eptoin": "phenytoin",
+    "dilantin": "phenytoin",
+    "doxy": "doxycycline",
+    "vibramycin": "doxycycline",
+    "achromycin": "tetracycline",
+    "augmentin": "amoxicillin",
+    "clavam": "amoxicillin",
+    "moxikind cv": "amoxicillin",
+    "novamox": "amoxicillin",
+    "cardace": "ramipril",
+    "hopace": "ramipril",
+    "losar": "losartan",
+    "cozaar": "losartan",
+    "envas": "enalapril",
+    "aldactone": "spironolactone",
+    "spirono": "spironolactone",
+    "lasix": "furosemide",
+    "frusemide": "furosemide",
+    "lanoxin": "digoxin"
+  }
+}

@@ -62,6 +62,7 @@ export default function MedicinesPage() {
     return (
       <MedicineForm
         initial={initial}
+        medicineId={editing?.id}
         title={editing ? t("medicines.formTitleEdit") : t("medicines.formTitleNew")}
         submitLabel={t("common.save")}
         busy={busy}

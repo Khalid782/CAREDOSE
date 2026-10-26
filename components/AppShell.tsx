@@ -12,6 +12,7 @@ import { useCareData } from "@/lib/context/CareDataProvider";
 import { useTranslator } from "@/lib/i18n/useTranslator";
 import { BottomNav } from "./BottomNav";
 import { Button } from "./Button";
+import { InstallPrompt } from "./InstallPrompt";
 import { WarningBanner } from "./WarningBanner";
 
 /** Leaves room for the fixed bottom navigation at every text size. */
@@ -27,7 +28,10 @@ export function AppShell({ children }: { children: ReactNode }) {
         className={`mx-auto flex w-full max-w-[440px] flex-1 flex-col gap-5 px-4 pt-6 ${CONTENT_BOTTOM_PADDING}`}
       >
         {status === "ready" ? (
-          children
+          <>
+            <InstallPrompt />
+            {children}
+          </>
         ) : status === "loading" ? (
           <div className="mt-10 flex flex-col items-center gap-4 text-center">
             <LoaderCircle

@@ -9,13 +9,16 @@
  */
 
 import { Clock, FileText, Pill, Plus, ShieldCheck, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/Button";
 import { Card, CardTitle } from "@/components/Card";
 import { EmptyState } from "@/components/EmptyState";
 import { Field, inputClass, selectClass } from "@/components/Field";
+import { InteractionWarning } from "@/components/InteractionWarning";
 import { WarningBanner } from "@/components/WarningBanner";
+import { useCareData } from "@/lib/context/CareDataProvider";
 import { minutesToTime, timeToMinutes, todayKey } from "@/lib/data/time";
+import { interactionChecker } from "@/lib/interactions";
 import {
   FOOD_RELATIONS,
   MEDICINE_FORMS,
@@ -107,11 +110,20 @@ export function PrescriptionReview({
   onSave: (drafts: MedicineDraft[]) => Promise<void>;
 }) {
   const { t } = useTranslator();
+  const { medicines } = useCareData();
   const [items, setItems] = useState<ReviewItem[]>(() =>
     result.medicines.map((medicine) => fromParsed(medicine, mealTimes)),
   );
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  const interactionWarnings = useMemo(() => {
+    const added = items
+      .filter((item) => item.name.trim())
+      .map((item) => ({ id: `review:${item.id}`, name: item.name.trim() }));
+    if (added.length === 0) return [];
+    return interactionChecker.checkNew(medicines, added);
+  }, [items, medicines]);
 
   const update = (id: string, patch: Partial<ReviewItem>) => {
     setItems((previous) =>
@@ -208,6 +220,13 @@ export function PrescriptionReview({
 
   return (
     <div className="flex flex-col gap-5">
+      <InteractionWarning warnings={interactionWarnings} />
+      {interactionWarnings.length === 0 ? (
+        <p className="text-[0.85rem] leading-relaxed text-fg-muted">
+          {t("interactions.shortDisclaimer")}
+        </p>
+      ) : null}
+
       <WarningBanner tone="info" title={t("review.noticeTitle")}>
         <p>{t("review.notice")}</p>
       </WarningBanner>
