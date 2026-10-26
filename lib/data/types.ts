@@ -169,6 +169,13 @@ export interface MedicineDraft {
   unitsRemaining: number | null;
   /** One entry per time of day, 24h "HH:mm". At least one is required. */
   times: string[];
+  /**
+   * First local date "YYYY-MM-DD" the course runs. Undefined keeps whatever
+   * range an existing schedule already has; null means "always".
+   */
+  startDate?: string | null;
+  /** Last local date for the course, or null/undefined for no end date. */
+  endDate?: string | null;
 }
 
 /** Defaults used when storage is empty or settings cannot be read. */

@@ -20,16 +20,21 @@ export interface DoseEntry {
   schedule: ScheduleItem;
   medicine: Medicine;
   log: DoseLog | null;
+  /** Plain-language sentence from the schedule engine. */
+  instruction?: string;
 }
 
 export function DoseCard({
   dose,
+  instruction,
   now,
   onTake,
   onSkip,
   onUndo,
 }: {
   dose: DoseEntry;
+  /** Optional plain-language sentence, already built for this dose. */
+  instruction?: string;
   /** Current time, used to mark a dose that is past its time. */
   now: Date;
   onTake: () => void;
@@ -53,10 +58,14 @@ export function DoseCard({
         <BigTimeBadge time={schedule.time} caption={food(schedule.food)} tone={tone} />
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <h3 className="text-[1.4rem] font-bold leading-tight text-fg">{medicine.name}</h3>
-          <p className="text-[0.9rem] text-fg-muted">
-            {schedule.dosage}
-            {medicine.strength ? ` · ${medicine.strength}` : ""}
-          </p>
+          {instruction ? (
+            <p className="text-base font-semibold leading-snug text-fg">{instruction}</p>
+          ) : (
+            <p className="text-[0.9rem] text-fg-muted">
+              {schedule.dosage}
+              {medicine.strength ? ` · ${medicine.strength}` : ""}
+            </p>
+          )}
           {isLate ? (
             <span className="mt-1 w-fit rounded-lg border-2 border-warn-line bg-warn-soft px-2 py-1 text-[0.85rem] font-semibold text-warn-fg">
               {t("today.late")}

@@ -16,10 +16,11 @@ import { EmptyState } from "@/components/EmptyState";
 import { PageHeader } from "@/components/PageHeader";
 import { ProgressRing } from "@/components/ProgressRing";
 import { WarningBanner } from "@/components/WarningBanner";
-import { useCareData, useDosesForDate } from "@/lib/context/CareDataProvider";
+import { useCareData } from "@/lib/context/CareDataProvider";
 import { useSettings } from "@/lib/context/SettingsProvider";
 import { TIME_OF_DAY_ORDER, scheduledAt, timeToMinutes, toDateKey } from "@/lib/data/time";
 import type { MealTimes, TimeOfDay } from "@/lib/data/types";
+import { useDosePlan } from "@/lib/hooks/useDosePlan";
 import { useNow } from "@/lib/hooks/useNow";
 import { useTranslator } from "@/lib/i18n/useTranslator";
 
@@ -38,7 +39,9 @@ export default function TodayPage() {
   const now = useNow(1000);
 
   const dateKey = toDateKey(now);
-  const doses = useDosesForDate(dateKey);
+  // The schedule engine turns saved medicines and Settings meal times into
+  // this date's doses, already described in plain language.
+  const doses = useDosePlan(dateKey);
 
   const minutesNow = now.getHours() * 60 + now.getMinutes();
   const takenCount = doses.filter((dose) => dose.log?.status === "taken").length;
@@ -157,6 +160,7 @@ export default function TodayPage() {
               <DoseCard
                 key={dose.schedule.id}
                 dose={dose}
+                instruction={dose.instruction}
                 now={now}
                 onTake={() => void setDoseStatus(dose.schedule.id, dateKey, "taken")}
                 onSkip={() => void setDoseStatus(dose.schedule.id, dateKey, "skipped")}

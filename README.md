@@ -14,7 +14,7 @@ the Supabase backend is not called yet.
 | Screen       | Route        | What it does                                                                  |
 | ------------ | ------------ | ----------------------------------------------------------------------------- |
 | Today        | `/`          | Doses grouped Morning / Afternoon / Evening / Night, a big **I TOOK IT** button per dose, a next-dose countdown and a progress ring. |
-| Scan         | `/scan`      | Camera and upload buttons with a photo preview. Reading the photo comes next.  |
+| Scan         | `/scan`      | Camera/upload, on-device OCR with photo preprocessing, then an editable Review that saves only after confirmation. |
 | Medicines    | `/medicines` | List of medicines with add, edit and delete, and a manual Add Medicine form.   |
 | History      | `/history`   | Weekly adherence: bar chart, percentage and missed doses per medicine.         |
 | Settings     | `/settings`  | Meal times, text size, language, dark mode, caregiver name and phone.          |
@@ -35,6 +35,7 @@ Other scripts:
 npm run build    # production build
 npm start        # serve the production build
 npm run lint     # eslint
+npm test         # parser + schedule unit tests
 npx tsc --noEmit # type check
 ```
 
@@ -117,8 +118,25 @@ language.
 - Keep `NEXT_PUBLIC_DATA_SOURCE=mock` until the Supabase adapter and real
   authentication are in place.
 
+## Prescription scanning
+
+1. `/lib/ocr/preprocess.ts` resizes the photo to a 2400px long edge,
+   grayscales it and boosts contrast. Testing showed Tesseract needs large text.
+2. `/lib/ocr/recognize.ts` runs Tesseract.js inside its Web Worker and reports
+   progress. The first scan downloads the English model; the browser caches it.
+3. `/lib/parser.ts` reads name, strength, form, dose, frequency (OD/BD/TDS/QID,
+   “twice a day”, “1-0-1”), food/meal timing and duration from each line.
+4. The Review screen shows the original OCR line beside editable fields. OCR
+   output is never saved automatically; `saveMedicines()` runs only after the
+   patient presses Save.
+5. `/lib/schedule.ts` turns the saved medicines plus Settings meal times into
+   dated doses and plain sentences for the Today screen.
+
+`npm test` covers both the parser (including noisy OCR samples) and the
+schedule engine.
+
 ## What comes next
 
-1. Reading medicine details from a photo (OCR) behind the Scan screen.
-2. The Supabase adapter, with row-level security and per-patient scoping.
-3. Reminders and dose notifications through Capacitor.
+1. The Supabase adapter, with row-level security and per-patient scoping.
+2. Reminders and dose notifications through Capacitor.
+3. Bundle Tesseract's engine and English data for a fully offline first scan.

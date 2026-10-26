@@ -69,6 +69,8 @@ interface CareDataValue {
   clearDose: (scheduleItemId: string, date: string) => Promise<void>;
   /** Creates or updates a medicine together with its times. */
   saveMedicine: (draft: MedicineDraft, medicineId?: string) => Promise<void>;
+  /** Saves several reviewed medicines at once (used only after confirmation). */
+  saveMedicines: (drafts: MedicineDraft[]) => Promise<void>;
   /** Removes a medicine from the plan, keeping its past records. */
   deleteMedicine: (medicineId: string) => Promise<void>;
   saveCaregiver: (input: { name: string; phone: string }) => Promise<void>;
@@ -150,7 +152,11 @@ export function CareDataProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
-  const saveMedicine = useCallback(
+  /**
+   * Writes one medicine and its times. Kept separate from `refresh` so a batch
+   * of scanned medicines can be written before the screens reload once.
+   */
+  const persistMedicine = useCallback(
     async (draft: MedicineDraft, medicineId?: string) => {
       const layer = getDataLayer();
       const fields = {
@@ -169,6 +175,16 @@ export function CareDataProvider({ children }: { children: ReactNode }) {
       const existing = await layer.schedules.listByMedicine(medicine.id);
       const wantedTimes = [...new Set(draft.times)].sort();
 
+      // A scanned course has a date range; a manually edited medicine leaves
+      // its existing range alone unless the draft explicitly sets one.
+      const range = {
+        ...(draft.startDate !== undefined ? { startDate: draft.startDate } : {}),
+        ...(draft.endDate !== undefined ? { endDate: draft.endDate } : {}),
+      };
+      const currentRange = existing[0]
+        ? { startDate: existing[0].startDate, endDate: existing[0].endDate }
+        : { startDate: null, endDate: null };
+
       // Rows whose time has not changed keep their id, so the dose history of
       // that time stays linked to the same schedule row.
       for (const time of wantedTimes) {
@@ -181,18 +197,42 @@ export function CareDataProvider({ children }: { children: ReactNode }) {
           food: draft.food,
           daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
           isActive: true,
+          ...range,
         };
         if (match) await layer.schedules.update(match.id, timeFields);
-        else await layer.schedules.create({ ...timeFields, startDate: null, endDate: null });
+        else
+          await layer.schedules.create({
+            ...timeFields,
+            // A new time on an existing scanned course inherits its dates.
+            startDate:
+              draft.startDate !== undefined ? draft.startDate : currentRange.startDate,
+            endDate: draft.endDate !== undefined ? draft.endDate : currentRange.endDate,
+          });
       }
 
       for (const item of existing) {
         if (!wantedTimes.includes(item.time)) await layer.schedules.remove(item.id);
       }
+    },
+    [],
+  );
 
+  const saveMedicine = useCallback(
+    async (draft: MedicineDraft, medicineId?: string) => {
+      await persistMedicine(draft, medicineId);
       await refresh();
     },
-    [refresh],
+    [persistMedicine, refresh],
+  );
+
+  const saveMedicines = useCallback(
+    async (drafts: MedicineDraft[]) => {
+      // OCR output only reaches this function after the patient presses Save
+      // on the Review screen; nothing here runs automatically.
+      for (const draft of drafts) await persistMedicine(draft);
+      await refresh();
+    },
+    [persistMedicine, refresh],
   );
 
   const deleteMedicine = useCallback(
@@ -246,6 +286,7 @@ export function CareDataProvider({ children }: { children: ReactNode }) {
       setDoseStatus,
       clearDose,
       saveMedicine,
+      saveMedicines,
       deleteMedicine,
       saveCaregiver,
       resetSampleData,
@@ -259,6 +300,7 @@ export function CareDataProvider({ children }: { children: ReactNode }) {
       setDoseStatus,
       clearDose,
       saveMedicine,
+      saveMedicines,
       deleteMedicine,
       saveCaregiver,
       resetSampleData,
